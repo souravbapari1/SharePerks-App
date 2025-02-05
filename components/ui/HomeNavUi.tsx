@@ -78,6 +78,7 @@ export default function HomeNavUi({ children }: { children?: ReactNode }) {
         <View className="flex-row fixed top-0 px-4  items-center bg-white gap-4  h-12  mx-5  mb-4 rounded-full shadow-sm overflow-hidden">
           <AntDesign name="search1" size={20} color="#A4A4A4" />
           <TextInput
+            autoComplete="off"
             className="flex-1 bg-white h-12"
             placeholder="Search"
             value={Search}

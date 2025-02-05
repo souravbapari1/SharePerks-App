@@ -27,6 +27,7 @@ const SplashScreen = () => {
 
         if (user.user.completeProfile == true) {
           dispatch(setUserData(user));
+
           router.replace("/shareperk");
           // router.replace("/shareperk/giftcard/view/sucess");
         } else {
@@ -37,6 +38,7 @@ const SplashScreen = () => {
 
         if (error?.response?.statusCode == 404) {
           await AsyncStorage.clear();
+
           router.replace("/auth");
         } else {
           Toast.show({

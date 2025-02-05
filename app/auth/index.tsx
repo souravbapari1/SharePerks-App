@@ -1,25 +1,20 @@
-import {
-  View,
-  Text,
-  ScrollView,
-  Image,
-  Dimensions,
-  Pressable,
-  TextInput,
-  ActivityIndicator,
-} from "react-native";
-import React, { useState } from "react";
-import { WelcomeTitle } from "../../components/widgets/WelcomeTitle";
 import { Ionicons } from "@expo/vector-icons";
-import { useRouter } from "expo-router";
-import { authUser } from "../../network/worker/auth";
+import React, { useState } from "react";
+import {
+  Dimensions,
+  Image,
+  ScrollView,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
 import Toast from "react-native-toast-message";
-import { toastConfig } from "../../constants/toaste-config";
-import { cn } from "../../lib/cn";
 import AppButton from "../../components/widgets/AppButton";
+import { WelcomeTitle } from "../../components/widgets/WelcomeTitle";
+import { toastConfig } from "../../constants/toaste-config";
+import { authUser } from "../../network/worker/auth";
 import { navigate } from "../../utils/navigate";
 import { OtpScreenParams } from "./otp";
-import { connectBroker } from "../../smallcase/smallcase";
 
 const AuthMobile = () => {
   const { width } = Dimensions.get("screen");
@@ -61,10 +56,12 @@ const AuthMobile = () => {
   };
 
   return (
-    <ScrollView className="flex-1 bg-white pt-24 p-8">
+    <ScrollView
+      style={{ flex: 1, backgroundColor: "#fff", paddingTop: 30, padding: 8 }}
+    >
       <WelcomeTitle />
       <Image
-        source={require("../../assets/mobile.png")}
+        source={require("@/assets/mobile.png")}
         className="mt-10"
         style={{
           width: width,
@@ -80,6 +77,7 @@ const AuthMobile = () => {
         <View className="authInput mt-5">
           <Ionicons name="call-outline" size={22} color="#508FE9" />
           <TextInput
+            autoComplete="off"
             className="flex-1 h-14  font-semibold"
             placeholder="Enter Mobile No.."
             cursorColor="#1e3faf"

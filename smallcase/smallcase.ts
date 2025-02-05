@@ -6,6 +6,7 @@ import { SC_GATEWAYNAME, SC_USER_CONNECT_TOKEN, SC_APISecret } from "./keys";
 import axios from "axios";
 import { importHoldings } from "../network/worker/user";
 import * as LocalAuthentication from "expo-local-authentication";
+
 export const ConfigSmallCaseENV = async () => {
   await SmallcaseGateway.setConfigEnvironment({
     isLeprechaun: false,

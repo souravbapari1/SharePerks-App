@@ -7,7 +7,7 @@ function index() {
   return (
     <View className="flex-1 bg-white flex justify-center items-center">
       <LottieView
-        source={require("../../../../../assets/sucess.json")}
+        source={require("@/assets/sucess.json")}
         autoPlay
         loop={false}
         style={{ width: 250, height: 250 }}

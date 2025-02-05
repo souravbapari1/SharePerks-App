@@ -6,7 +6,7 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from "react-native-reanimated";
-import { LOGO_LONG } from "../../constants/images";
+import { LOGO_LONG } from "@/constants/images";
 
 const AnimatedSplashLogo = () => {
   const rotation = useSharedValue(0);
@@ -40,7 +40,7 @@ const AnimatedSplashLogo = () => {
       }}
     >
       {/* <Animated.Image
-        source={require("../../assets/money.png")}
+        source={require("@/assets/money.png")}
         style={[
           {
             width: 50,

@@ -39,7 +39,7 @@ const LinkBroker = () => {
         Enter your details and browse offers!
       </Text>
       <Image
-        source={require("../../../assets/mobile.png")}
+        source={require("@/assets/mobile.png")}
         className="mt-10"
         style={{
           width: width,

@@ -5,11 +5,10 @@ import { oneSignalAppId } from "../constants/appInfo";
 import SplashScreen from "./splash";
 
 const Index = () => {
-  OneSignal.Debug.setLogLevel(LogLevel.Verbose);
-  OneSignal.initialize(oneSignalAppId);
-
   // // Also need enable notifications to complete OneSignal setup
   const requestPermission = async () => {
+    OneSignal.Debug.setLogLevel(LogLevel.Verbose);
+    OneSignal.initialize(oneSignalAppId);
     const hasAskedBefore = await AsyncStorage.getItem("hasAskedForPermission");
 
     if (!hasAskedBefore) {
