@@ -5,7 +5,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { SC_GATEWAYNAME, SC_USER_CONNECT_TOKEN, SC_APISecret } from "./keys";
 import axios from "axios";
 import { importHoldings } from "../network/worker/user";
-
+import * as LocalAuthentication from "expo-local-authentication";
 export const ConfigSmallCaseENV = async () => {
   await SmallcaseGateway.setConfigEnvironment({
     isLeprechaun: false,
@@ -33,6 +33,12 @@ export const SmallcaseGatewayTriggerTransaction = async (
 };
 
 export const connectBroker = async () => {
+  const localAuth = await LocalAuthentication.authenticateAsync({});
+
+  if (!localAuth.success) {
+    throw new Error("Local Authentication Failed");
+  }
+
   const authtoken = await AsyncStorage.getItem(SC_USER_CONNECT_TOKEN);
   let data = JSON.stringify({
     intent: "CONNECT",

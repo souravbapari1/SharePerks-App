@@ -2,6 +2,7 @@ import React from "react";
 import { View, Text, TouchableOpacity, Linking } from "react-native";
 import HeaderAppBar from "../../../components/ui/HeaderAppBar";
 import { Ionicons } from "@expo/vector-icons";
+import { router } from "expo-router";
 
 const HelpAndSupport = () => {
   const handleEmailPress = () => {
@@ -16,9 +17,22 @@ const HelpAndSupport = () => {
     Linking.openURL("https://wa.me/1234567890");
   };
 
+  const handleChatSupport = () => {
+    router.push("/shareperk/pages/livechat");
+  };
+
   return (
     <HeaderAppBar title="Help & Support">
       <View className="py-6 flex flex-col gap-4">
+        <TouchableOpacity
+          onPress={handleChatSupport}
+          className="flex-row items-center p-4 bg-orange-500 rounded-lg"
+        >
+          <Ionicons name="chatbubbles" size={24} color="white" />
+          <Text className="text-white text-lg font-medium ml-4">
+            Live Chat Support
+          </Text>
+        </TouchableOpacity>
         <TouchableOpacity
           onPress={handleEmailPress}
           className="flex-row items-center p-4 bg-blue-500 rounded-lg"

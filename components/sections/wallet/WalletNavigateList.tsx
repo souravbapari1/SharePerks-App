@@ -23,7 +23,12 @@ function WalletNavigateList() {
           router.push("/shareperk/transitions");
         }}
       />
-      <InfoList title="Help & Support" onPress={() => {}} />
+      <InfoList
+        title="Help & Support"
+        onPress={() => {
+          router.push("/shareperk/pages/helpandsupport");
+        }}
+      />
     </>
   );
 }
