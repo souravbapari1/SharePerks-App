@@ -25,7 +25,7 @@ const request = () => {
   const [loading, setLoading] = useState(false);
   const [amount, setAmount] = useState("");
   const sendPayoutRequest = async () => {
-    if ((user?.user.walletAmount || 0) < 100) {
+    if ((user?.user.walletAmount || 0) < 10) {
       Toast.show({
         ...toastConfig,
         text1: "Insufficient Wallet Amount!",

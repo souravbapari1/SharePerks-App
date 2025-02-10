@@ -27,6 +27,40 @@ function TopOffersSlide() {
             </Pressable>
           );
         })}
+        {state.data?.bannerGiftCards?.whoowCards?.map((e) => {
+          return (
+            <Pressable
+              onPress={() => {
+                router.push(`/shareperk/giftcard/view/whoow/${e._id}`);
+              }}
+              className="flex-1"
+              key={e._id}
+            >
+              <Image
+                src={client.baseUrl + "/" + e.GiftCardImage}
+                key={"banner-"}
+                className="flex-1 mx-6 rounded-3xl object-contain bg-gray-100"
+              />
+            </Pressable>
+          );
+        })}
+        {state.data?.bannerGiftCards?.gifterCards?.map((e) => {
+          return (
+            <Pressable
+              onPress={() => {
+                router.push(`/shareperk/giftcard/view/gifter/${e._id}`);
+              }}
+              className="flex-1"
+              key={e._id}
+            >
+              <Image
+                src={client.baseUrl + "/" + e.GiftCardImage}
+                key={"banner-"}
+                className="flex-1 mx-6 rounded-3xl object-contain bg-gray-100"
+              />
+            </Pressable>
+          );
+        })}
       </PagerView>
     </View>
   );

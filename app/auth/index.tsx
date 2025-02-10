@@ -86,7 +86,7 @@ const AuthMobile = () => {
             onChangeText={setMobile}
           />
         </View>
-        <AppButton buttonText="Get Otp" loading={loading} onClick={onClick} />
+        <AppButton buttonText="Get OTP" loading={loading} onClick={onClick} />
       </View>
     </ScrollView>
   );

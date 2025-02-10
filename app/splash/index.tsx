@@ -18,7 +18,8 @@ const SplashScreen = () => {
     const token = await getUserAuthToken();
     await smallCaseProvideUserToken();
     if (!token) {
-      setIsNew(true);
+      // setIsNew(true);
+      router.replace("/auth");
       return false;
     } else {
       try {

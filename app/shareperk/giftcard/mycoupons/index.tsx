@@ -65,7 +65,7 @@ const index = () => {
   const refundCount = data?.failed?.filter((item) => item.refund).length || 0;
 
   return (
-    <HeaderAppBar title="My Coupons" loading={isLoading}>
+    <HeaderAppBar title="My Gift Cards" loading={isLoading}>
       <FlatList
         data={data?.cards || []}
         keyExtractor={(item) => item._id}

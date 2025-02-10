@@ -1,9 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Text, View } from "react-native";
 import LottieView from "lottie-react-native";
-import { Link } from "expo-router";
+import { Link, useNavigation } from "expo-router";
 
 function index() {
+  const navigation = useNavigation();
+
+  useEffect(() => {
+    navigation.setOptions({
+      headerShown: true,
+      headerTitle: "",
+    });
+  }, []);
+
   return (
     <View className="flex-1 bg-white flex justify-center items-center">
       <LottieView
@@ -25,7 +34,7 @@ function index() {
           className="text-primary mt-10"
         >
           <Text className="text-center font-semibold text-primary ">
-            Go to My Coupons
+            Go to My Gift Cards
           </Text>
         </Link>
       </View>

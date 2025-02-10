@@ -17,7 +17,7 @@ function ReferWork() {
       style={{ backgroundColor: "#FAFAFC" }}
     >
       <Text className="text-xl text-center mt-3 text-gray-800 mb-4">
-        Share Reefer Code via
+        Share Refer Code via
       </Text>
       <UpdateInputBox
         input={{

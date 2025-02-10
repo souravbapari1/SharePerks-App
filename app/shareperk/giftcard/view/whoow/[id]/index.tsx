@@ -170,7 +170,7 @@ const index = () => {
         <View className="w-full bg-white px-5">
           <AppButton
             buttonText="Proceed To Buy Coupon"
-            className="bg-secondary"
+            className="bg-[#6d4906]"
             onClick={() => {
               if (active.amount == 0) {
                 Toast.show({
@@ -213,7 +213,13 @@ const index = () => {
           <Text className="text-center text-gray-500 text-sm">
             {data.data?.whoow?.description}
           </Text>
-          <View className="flex-row mt-5 justify-between gap-y-4 flex-wrap items-center">
+
+          <View className="w-full">
+            <Text className="text-sm font-bold mt-5 text-center text-secondary ">
+              Click To Select Your Amount
+            </Text>
+          </View>
+          <View className="flex-row justify-between gap-y-4 flex-wrap items-center">
             {amounts?.map((e, i) => {
               const discount = isUserHolding()
                 ? getPercentageValue(e.amount, e.withBroker)

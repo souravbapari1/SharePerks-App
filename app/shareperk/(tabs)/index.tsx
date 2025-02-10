@@ -13,6 +13,7 @@ import { loadFeeds } from "../../../network/worker/feed";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { setFeed } from "../../../redux/slice/feedSlice";
 import { navigate } from "../../../utils/navigate";
+import GiftCardBox from "@/components/sections/home/GiftCardBox";
 
 const Home = () => {
   const state = useAppSelector((e) => e.feedSlice);
@@ -104,6 +105,14 @@ const Home = () => {
         </View>
         {/* === Your favorite brand End === */}
         {/* --------------------------- */}
+
+        {/* === Gift Card Box Start === */}
+        {userState.user && (
+          <View className="mt-8">
+            <TitleBar title="Hot Gift Cards" />
+            <GiftCardBox />
+          </View>
+        )}
         {/* === Refer Box Start === */}
         {userState.user && (
           <View>
@@ -111,6 +120,8 @@ const Home = () => {
           </View>
         )}
         {/* === Refer Box End === */}
+
+        {/* === Gift Card Box End === */}
       </View>
       {state.data.coupons.length != 0 && <CouponCodesList />}
     </HomeNavUi>

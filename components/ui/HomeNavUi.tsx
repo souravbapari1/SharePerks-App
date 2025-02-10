@@ -54,7 +54,7 @@ export default function HomeNavUi({ children }: { children?: ReactNode }) {
             className=" overflow-hidden"
             style={{ backgroundColor: MAIN_COLOR }}
           >
-            <View className="px-6 mt-14 flex-row justify-between items-center">
+            <View className="pr-10 mt-14 flex-row justify-between items-center">
               <Image
                 source={LOGO_LONG2}
                 style={{ width: 130, height: 40, objectFit: "contain" }}
