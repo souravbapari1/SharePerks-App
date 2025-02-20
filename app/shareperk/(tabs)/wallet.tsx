@@ -9,7 +9,6 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 import MyHoldings from "../../../components/ui/MyHoldings";
 import * as LocalAuthentication from "expo-local-authentication";
 const Wallet = () => {
-  const [openMyHoldings, setOpenMyHoldings] = useState(false);
   const { user } = useAppSelector((e) => e.userSlice);
   useEffect(() => {
     if (user == null) {
@@ -30,17 +29,11 @@ const Wallet = () => {
             if (!auth.success) {
               return false;
             }
-            setOpenMyHoldings(true);
+            router.push("/shareperk/pages/myholdings");
           }}
         />
         <WalletNavigateList />
       </HeaderAppBar>
-      <MyHoldings
-        isVisible={openMyHoldings}
-        onClose={() => {
-          setOpenMyHoldings(false);
-        }}
-      />
     </GestureHandlerRootView>
   );
 };

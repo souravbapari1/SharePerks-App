@@ -23,6 +23,7 @@ export interface User {
   __v: number;
   email: string;
   name: string;
+  emailAlerts: boolean;
 }
 
 export interface Holdings {

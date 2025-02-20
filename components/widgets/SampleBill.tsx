@@ -5,10 +5,43 @@ import { SECONDARY_COLOR } from "../../constants/colors";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { connectBroker } from "../../smallcase/smallcase";
 import { setUserData } from "../../redux/slice/userSlice";
+import { getPercentageValue } from "@/helper/percent";
 
-const SampleBill = () => {
+const SampleBill = ({
+  type = "PERCENT",
+  withHoldings = 5,
+  withOutHolding = 2,
+  isCoupon = false,
+  isHolding = true,
+}: {
+  withHoldings?: number;
+  withOutHolding?: number;
+  type?: string;
+  isCoupon?: boolean;
+  isHolding?: boolean;
+}) => {
   const { user } = useAppSelector((e) => e.userSlice);
   const dispatch = useAppDispatch();
+
+  const amount = 2500;
+
+  const saveWithOutHolding =
+    type === "PERCENT"
+      ? getPercentageValue(amount, withOutHolding)
+      : withOutHolding;
+
+  const saveWithHolding =
+    type === "PERCENT"
+      ? getPercentageValue(amount, withHoldings)
+      : withHoldings;
+
+  const getSavedAmount = () => {
+    if (isHolding) {
+      return saveWithHolding;
+    }
+    return saveWithOutHolding;
+  };
+
   return (
     <View className="px-5 mt-6">
       <Text className="titleHome mb-2">Sample Bill</Text>
@@ -16,7 +49,7 @@ const SampleBill = () => {
         <View className="flex-row items-center gap-4">
           <BillSvg size={20} />
           <Text className="text-sm font-semibold text-gray-800 ">
-            You saved up to Rs. 1100
+            You saved up to Rs. {getSavedAmount().toFixed(2)}
           </Text>
         </View>
         <View style={[{ height: 1, overflow: "hidden" }]} className="my-3 mx-2">
@@ -38,31 +71,48 @@ const SampleBill = () => {
               Total Bill
             </Text>
             <Text className="text-xs" style={{ color: SECONDARY_COLOR }}>
-              ₹ 2,500
+              ₹ {amount.toFixed(2)}
             </Text>
           </View>
-          <View className="flex-row justify-between items-center gap-4">
-            <Text className="text-sm font-light  text-orange-500">
-              Gift card offer
-            </Text>
-            <Text className="text-xs" style={{ color: SECONDARY_COLOR }}>
-              ₹ 500
-            </Text>
-          </View>
-          <View className="flex-row justify-between items-center gap-4">
-            <Text className="text-sm font-light  text-orange-500">
-              Affiliate cashback offer
-            </Text>
-            <Text className="text-xs" style={{ color: SECONDARY_COLOR }}>
-              ₹ 600
-            </Text>
-          </View>
+          {isCoupon && (
+            <View className="flex-row justify-between items-center gap-4">
+              <Text className="text-sm font-light  text-orange-500">
+                Gift card offer
+              </Text>
+              <Text className="text-xs" style={{ color: SECONDARY_COLOR }}>
+                ₹ 500
+              </Text>
+            </View>
+          )}
+          {!isCoupon && (
+            <View className="flex-row justify-between items-center gap-4">
+              <Text className="text-sm font-light  text-orange-500">
+                Affiliate cashback offer
+              </Text>
+              <Text className="text-xs" style={{ color: SECONDARY_COLOR }}>
+                ₹ {saveWithOutHolding.toFixed(2)}
+              </Text>
+            </View>
+          )}
+
+          {isHolding && (
+            <View className="flex-row justify-between items-center gap-4">
+              <Text className="text-sm font-light  text-orange-500">
+                Holding cashback
+              </Text>
+              <Text className="text-xs" style={{ color: SECONDARY_COLOR }}>
+                ₹ {(saveWithHolding - saveWithOutHolding).toFixed(2)}
+              </Text>
+            </View>
+          )}
 
           <View className="flex-row justify-between items-center gap-4 mt-2">
             <Text className="text-xs font-medium  text-gray-700">
               You’ll pay
             </Text>
-            <Text className="text-xs font-medium">₹ 600</Text>
+            <Text className="text-xs font-medium">
+              ₹ {(amount - getSavedAmount()).toFixed(2)}
+            </Text>
           </View>
         </View>
         <View style={[{ height: 1, overflow: "hidden" }]} className="my-3 mx-2">

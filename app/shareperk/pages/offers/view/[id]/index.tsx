@@ -146,7 +146,12 @@ const OfferView = () => {
                 text={offersData[index].aboutOffer}
                 title="About Offer"
               />
-              <SampleBill />
+              <SampleBill
+                isHolding={isUserHolding()}
+                type={offersData[index]?.commissionType}
+                withHoldings={offersData[index]?.commissionRateWithHolding}
+                withOutHolding={offersData[index]?.commissionRate}
+              />
               <View className="px-5 mt-5">
                 <InfoList
                   title="How To Redeem"

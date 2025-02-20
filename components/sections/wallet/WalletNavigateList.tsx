@@ -24,6 +24,12 @@ function WalletNavigateList() {
         }}
       />
       <InfoList
+        title="Frequently asked questions"
+        onPress={() => {
+          router.push("/shareperk/pages/faq");
+        }}
+      />
+      <InfoList
         title="Help & Support"
         onPress={() => {
           router.push("/shareperk/pages/helpandsupport");

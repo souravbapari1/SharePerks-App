@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { LogLevel, OneSignal } from "react-native-onesignal";
 import { oneSignalAppId } from "../constants/appInfo";
 import SplashScreen from "./splash";
+import MyHoldings from "./shareperk/pages/myholdings";
 
 const Index = () => {
   // // Also need enable notifications to complete OneSignal setup
@@ -30,5 +31,6 @@ const Index = () => {
   }, []);
 
   return <SplashScreen />;
+  // return <MyHoldings />;
 };
 export default Index;

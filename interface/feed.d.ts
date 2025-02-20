@@ -26,6 +26,11 @@ export interface Brand {
   bannerImage: string;
   brandImage: string;
   createdAt: string;
+
+  commissionRate: number;
+  commissionRateWithHolding: number;
+  commissionType: "PERCENT" | "AMOUNT";
+
   updatedAt: string;
   __v: number;
 }

@@ -48,10 +48,14 @@ function UserNavigateList({ onOpenPolicy }: { onOpenPolicy: Function }) {
             Help Centre
           </Text>
         </UserList>
-        {/* <UserList onPress={() => {}}>
+        <UserList
+          onPress={() => {
+            router.push("/shareperk/pages/settings");
+          }}
+        >
           <AntDesign name="setting" size={22} color="black" />
           <Text className="font-semibold  mt-1 ">Settings & Security</Text>
-        </UserList> */}
+        </UserList>
 
         <UserList
           onPress={() => {

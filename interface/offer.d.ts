@@ -4,6 +4,8 @@ export interface OfferData {
   brandId: string;
   commissionRate: number;
   commissionType: "PERCENT" | "AMOUNT";
+  commissionRateWithHolding: number;
+
   expDate: string;
   bannerImage: string;
   offerImage: string;
