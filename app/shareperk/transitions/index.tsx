@@ -183,7 +183,7 @@ const TransferHistoryList = ({ data }: { data: TransitionsData }) => {
       </View>
       <View className="justify-between items-end gap-1 ">
         <Text className="text-lg font-bold text-gray-800">
-          ₹ {data.amount.toFixed(1)}
+          ₹ {data.payAmount.toFixed(1)}
         </Text>
         <Text className="text-xs font-bold text-green-600 capitalize">
           {data.status}

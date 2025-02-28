@@ -1,6 +1,7 @@
 export interface TransitionsData {
   _id: string;
   amount: number;
+  payAmount: number;
   transitions_id: string;
   status: string;
   subtitle: string;
