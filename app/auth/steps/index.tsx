@@ -90,7 +90,7 @@ const data = [
   {
     topTitle: "Let’s get started in 3 easy steps!",
     title: "01   Connect",
-    image: require("../../../assets/steps/step1.png"),
+    image: require("@/assets/steps/step1.png"),
     desc: "Connect your brokerage to browse rewards",
     content:
       "Get started by linking your brokerage account via Plaid. This allows us to verify your ownership and show you tailored benefits.",
@@ -99,7 +99,7 @@ const data = [
     topTitle: "",
 
     title: "02   Browse",
-    image: require("../../../assets/steps/step2.png"),
+    image: require("@/assets/steps/step2.png"),
     desc: "Browse shareholder rewards & benefits",
     content:
       "Once we've verified your ownership, you'll be able to browse through personalized benefits and rewards based on the companies you own.",
@@ -108,7 +108,7 @@ const data = [
     topTitle: "",
 
     title: "03   Redeem",
-    image: require("../../../assets/steps/step3.png"),
+    image: require("@/assets/steps/step3.png"),
     desc: "View and redeem eligible perks",
     content:
       "When you find a benefit or reward you want to redeem, easily redeem it through our platform; we'll take care of the rest. It's that simple.",

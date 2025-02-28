@@ -97,7 +97,7 @@ const WalletBox = ({
 
         <Pressable
           onPress={() => {
-            router.push("/shareperk/payout");
+            router.push("/shareperk/payout/request");
           }}
           className="h-8 w-28 rounded-xl flex justify-center items-center bg-orange-500"
         >

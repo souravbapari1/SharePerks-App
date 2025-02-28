@@ -7,9 +7,8 @@ import { useAppSelector } from "../../../redux/hooks";
 import { router } from "expo-router";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import MyHoldings from "../../../components/ui/MyHoldings";
-
+import * as LocalAuthentication from "expo-local-authentication";
 const Wallet = () => {
-  const [openMyHoldings, setOpenMyHoldings] = useState(false);
   const { user } = useAppSelector((e) => e.userSlice);
   useEffect(() => {
     if (user == null) {
@@ -24,15 +23,17 @@ const Wallet = () => {
   return (
     <GestureHandlerRootView>
       <HeaderAppBar title="My wallet">
-        <WalletBox onViewHoldingPress={() => setOpenMyHoldings(true)} />
+        <WalletBox
+          onViewHoldingPress={async () => {
+            const auth = await LocalAuthentication.authenticateAsync();
+            if (!auth.success) {
+              return false;
+            }
+            router.push("/shareperk/pages/myholdings");
+          }}
+        />
         <WalletNavigateList />
       </HeaderAppBar>
-      <MyHoldings
-        isVisible={openMyHoldings}
-        onClose={() => {
-          setOpenMyHoldings(false);
-        }}
-      />
     </GestureHandlerRootView>
   );
 };

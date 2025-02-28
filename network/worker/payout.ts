@@ -2,9 +2,10 @@ import { PayoutData } from "../../interface/payout";
 import { client, UserAuthToken } from "../action";
 
 export const requestPayout = async (data: {
-  bank: string;
+  bank?: string;
   amount: number;
   user: string;
+  upi: string;
 }) => {
   const token = await UserAuthToken();
   const req = await client.post("/api/v1/payout").json(data).send<{

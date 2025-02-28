@@ -114,7 +114,12 @@ const BrandView = () => {
               )}
 
               <OfferAbout text={brandData!.aboutBrand} title="About Brand" />
-              <SampleBill />
+              <SampleBill
+                isHolding={isUserHolding()}
+                type={brandData?.commissionType}
+                withHoldings={brandData?.commissionRateWithHolding}
+                withOutHolding={brandData?.commissionRate}
+              />
               <View className="px-5 mt-5">
                 <InfoList
                   title="How To Redeem"

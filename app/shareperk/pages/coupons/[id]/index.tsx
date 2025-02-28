@@ -153,7 +153,7 @@ const BrandView = () => {
                   text={CouponData!.aboutCoupon}
                   title="About Brand"
                 />
-                <SampleBill />
+                <SampleBill isHolding={isUserHolding()} />
                 <View className="px-5 mt-5">
                   <InfoList
                     title="How To Redeem"

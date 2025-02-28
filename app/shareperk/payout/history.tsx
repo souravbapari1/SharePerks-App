@@ -65,7 +65,7 @@ function PayoutHistory() {
                 />
               </View>
               <View className="justify-between gap-1 ">
-                <Text className="text-lg font-bold">{e.bank.name}</Text>
+                <Text className="text-lg font-bold">{e?.upi}</Text>
                 <Text className="text-xs text-black/40">
                   Date: {formatDate(e.createdAt.toString())}
                 </Text>

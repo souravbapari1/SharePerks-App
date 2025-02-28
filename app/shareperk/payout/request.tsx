@@ -9,6 +9,8 @@ import { toastConfig } from "../../../constants/toaste-config";
 import { requestPayout } from "../../../network/worker/payout";
 import { getUser } from "../../../network/worker/user";
 import { setUserData } from "../../../redux/slice/userSlice";
+import { Ionicons } from "@expo/vector-icons";
+import { SECONDARY_COLOR } from "@/constants/colors";
 
 export type PayoutPageData = {
   _id: string;
@@ -21,11 +23,13 @@ const request = () => {
   const { user } = useAppSelector((e) => e.userSlice);
   const dispatch = useAppDispatch();
 
-  const pageData = useLocalSearchParams<PayoutPageData>();
+  // const pageData = useLocalSearchParams<PayoutPageData>();
   const [loading, setLoading] = useState(false);
   const [amount, setAmount] = useState("");
+  const [upi, setUpi] = useState("");
+
   const sendPayoutRequest = async () => {
-    if ((user?.user.walletAmount || 0) < 100) {
+    if ((user?.user.walletAmount || 0) < 10) {
       Toast.show({
         ...toastConfig,
         text1: "Insufficient Wallet Amount!",
@@ -34,12 +38,22 @@ const request = () => {
       });
       return false;
     }
+    if (upi == "") {
+      Toast.show({
+        ...toastConfig,
+        text1: "Please enter upi",
+        text2: "Please enter upi",
+        type: "error",
+      });
+      return false;
+    }
     try {
       setLoading(true);
       const res = await requestPayout({
         amount: parseFloat(amount),
-        bank: pageData._id,
+
         user: user!.user._id,
+        upi: upi,
       });
       console.log(res);
       const userdata = await getUser();
@@ -63,14 +77,28 @@ const request = () => {
     }
   };
 
+  const state = useAppSelector((e) => e.userSlice);
+
   return (
-    <HeaderAppBar title="Payout Request">
-      <View className=" bg-orange-50  mb-5 border-gray-100  rounded-xl p-5 relative ">
-        <Text className=" text-gray-700 font-bold">{pageData.name}</Text>
-        <Text className=" text-gray-700 text-xs mt-2 font-bold  ">
-          {pageData.number}
-        </Text>
-      </View>
+    <HeaderAppBar
+      title="Payout Request"
+      action={
+        <View className="flex-row items-center gap-2">
+          <Ionicons name="wallet" size={24} color={"#ffffff"} />
+          <Text className="text-white font-bold">
+            {state.user?.user.walletAmount.toFixed(1) || "0.0"}
+          </Text>
+        </View>
+      }
+    >
+      <UpdateInputBox
+        showIcon={false}
+        keyboardType="url"
+        input={{ placeholder: "Enter Upi ID" }}
+        value={upi}
+        onChange={setUpi}
+      />
+      <View className="mt-4" />
       <UpdateInputBox
         showIcon={false}
         keyboardType="number-pad"

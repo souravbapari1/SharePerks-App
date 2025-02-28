@@ -30,7 +30,7 @@ const Switch: React.FC<TProps> = ({
   label = "",
   labelStyle,
 }) => {
-  const [isEnabled, setIsEnabled] = useState(false);
+  const [isEnabled, setIsEnabled] = useState(true);
 
   useEffect(() => {
     value && setIsEnabled(value);
@@ -62,7 +62,6 @@ const Switch: React.FC<TProps> = ({
   return (
     <View style={styles.container}>
       {!!label && <Text style={[styles.label, labelStyle]}>{label}</Text>}
-
       <TouchableOpacity onPress={toggleSwitch} activeOpacity={1}>
         <View style={[styles.toggleContainer, { backgroundColor: color }]}>
           <Animated.View

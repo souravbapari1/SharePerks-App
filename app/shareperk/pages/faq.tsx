@@ -1,23 +1,22 @@
-import { View, Text, ActivityIndicator } from "react-native";
-import React, { useEffect, useState } from "react";
-import { useLocalSearchParams, useNavigation } from "expo-router";
 import Ionicons from "@expo/vector-icons/Ionicons";
-
+import { useNavigation } from "expo-router";
+import React, { useEffect, useState } from "react";
+import { ActivityIndicator, View } from "react-native";
 import WebView from "react-native-webview";
-import { client } from "../../../../../../network/action";
-import { SECONDARY_COLOR } from "../../../../../../constants/colors";
-import { loadOfferById } from "../../../../../../network/worker/offer";
-
-const OfferBenifits = () => {
+import { SECONDARY_COLOR } from "../../../constants/colors";
+import { client } from "../../../network/action";
+const PageViewHtml = () => {
   const navigate = useNavigation();
-  const [data, setData] = useState<string>();
+  const [data, setData] = useState("");
   const [loading, setLoading] = useState(false);
-  const pageData = useLocalSearchParams<{ id: string }>();
+
   const loadData = async () => {
     try {
       setLoading(true);
-      const res = await loadOfferById(pageData.id);
-      setData(res.offerKeyPoints);
+      const res = await client
+        .get("/api/v1/appcontent/faq")
+        .send<{ data: string }>();
+      setData(res.data);
       setLoading(false);
     } catch (error) {
       console.log(error);
@@ -28,7 +27,7 @@ const OfferBenifits = () => {
   useEffect(() => {
     navigate.setOptions({
       headerShown: true,
-      title: "Offer Benefits",
+      title: "Privacy Policy",
       headerLeft: () => (
         <Ionicons
           name="chevron-back"
@@ -57,7 +56,6 @@ const OfferBenifits = () => {
         <WebView
           showsVerticalScrollIndicator={false}
           showsHorizontalScrollIndicator={false}
-          textZoom={200}
           style={{
             flex: 1, // Allow WebView to take up available space
           }}
@@ -66,10 +64,25 @@ const OfferBenifits = () => {
             html: `
         <html>
                 <head>
-              
+                  <style>
+                  body{padding:30px}
+                    h1 {
+                      font-size: 45px;
+                      color: #4CAF50;
+                      text-align: center;
+                      margin-bottom: 20px;
+                    }
+                    p {
+                      font-size: 25px;
+                      color: #555;
+                      text-align: justify;
+                      margin: 10px 0;
+                    }
+
+                  </style>
                 </head>
                 <body>
-          ${data?.toString()}
+          ${data}
                 </body>
               </html>
             `,
@@ -80,4 +93,4 @@ const OfferBenifits = () => {
   );
 };
 
-export default OfferBenifits;
+export default PageViewHtml;

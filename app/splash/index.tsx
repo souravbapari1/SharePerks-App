@@ -18,7 +18,8 @@ const SplashScreen = () => {
     const token = await getUserAuthToken();
     await smallCaseProvideUserToken();
     if (!token) {
-      setIsNew(true);
+      // setIsNew(true);
+      router.replace("/auth");
       return false;
     } else {
       try {
@@ -27,6 +28,7 @@ const SplashScreen = () => {
 
         if (user.user.completeProfile == true) {
           dispatch(setUserData(user));
+
           router.replace("/shareperk");
           // router.replace("/shareperk/giftcard/view/sucess");
         } else {
@@ -37,6 +39,7 @@ const SplashScreen = () => {
 
         if (error?.response?.statusCode == 404) {
           await AsyncStorage.clear();
+
           router.replace("/auth");
         } else {
           Toast.show({

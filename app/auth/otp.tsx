@@ -91,7 +91,7 @@ const OtpScreen = () => {
     <ScrollView className="flex-1 bg-white pt-24 p-8">
       <WelcomeTitle />
       <Image
-        source={require("../../assets/mobile.png")}
+        source={require("@/assets/mobile.png")}
         className="mt-10"
         style={{
           width: width,

@@ -70,12 +70,12 @@ const GiftCard = () => {
               <Link href={`/shareperk/giftcard/view/gifter/${e._id}`} key={i}>
                 <View
                   className="bg-white  justify-between flex-col items-center border-2 border-primary/10 rounded-lg overflow-hidden"
-                  style={{ width: width / 2 - 28 }}
+                  style={{ width: width / 2 - 30 }}
                 >
                   <View />
                   <View className=" justify-center  items-center w-full">
                     <Image
-                      width={width / 2 - 28 - 50}
+                      width={width / 2 - 30 - 50}
                       height={100}
                       style={{ objectFit: "contain" }}
                       source={{
@@ -104,12 +104,12 @@ const GiftCard = () => {
               <Link href={`/shareperk/giftcard/view/whoow/${e._id}`} key={i}>
                 <View
                   className="bg-white  justify-between flex-col items-center border-2 border-primary/10 rounded-lg overflow-hidden"
-                  style={{ width: width / 2 - 28 }}
+                  style={{ width: width / 2 - 30 }}
                 >
                   <View />
                   <View className=" justify-center  items-center w-full">
                     <Image
-                      width={width / 2 - 28 - 50}
+                      width={width / 2 - 30 - 50}
                       height={100}
                       style={{ objectFit: "contain" }}
                       source={{

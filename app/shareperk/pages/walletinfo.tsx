@@ -77,7 +77,12 @@ const WalletIndex = () => {
           router.push("/shareperk/transitions");
         }}
       />
-      <InfoList title="Help & Support" />
+      <InfoList
+        title="Help & Support"
+        onPress={() => {
+          router.push("/shareperk/pages/helpandsupport");
+        }}
+      />
     </HeaderAppBar>
   );
 };

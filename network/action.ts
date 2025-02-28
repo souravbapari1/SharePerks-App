@@ -2,6 +2,7 @@ import { NextClient } from "./request";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export const client = new NextClient("https://api.shareperks.in");
+// export const client = new NextClient("http://192.168.1.13:7565");
 
 export async function UserAuthToken() {
   return {

@@ -1,19 +1,19 @@
-import { View, Text, ActivityIndicator } from "react-native";
 import React, { useEffect } from "react";
-import HomeNavUi from "../../../components/ui/HomeNavUi";
-import TitleBar from "../../../components/widgets/TitleBar";
-import TopOffersSlide from "../../../components/sections/home/TopOffersSlide";
-import TopCategories from "../../../components/sections/home/TopCategories";
-import ExtraCashBackOffer from "../../../components/sections/home/ExtraCashBackOffer";
+import { ActivityIndicator, View } from "react-native";
 import BrandsView from "../../../components/sections/home/BrandsView";
-import ReferBox from "../../../components/widgets/ReferBox";
-import { router } from "expo-router";
-import { navigate } from "../../../utils/navigate";
-import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
-import { loadFeeds } from "../../../network/worker/feed";
-import { setFeed } from "../../../redux/slice/feedSlice";
 import CouponCodesList from "../../../components/sections/home/CuponCodesList";
+import ExtraCashBackOffer from "../../../components/sections/home/ExtraCashBackOffer";
 import OfferFromWallet from "../../../components/sections/home/OfferFromWallet";
+import TopCategories from "../../../components/sections/home/TopCategories";
+import TopOffersSlide from "../../../components/sections/home/TopOffersSlide";
+import HomeNavUi from "../../../components/ui/HomeNavUi";
+import ReferBox from "../../../components/widgets/ReferBox";
+import TitleBar from "../../../components/widgets/TitleBar";
+import { loadFeeds } from "../../../network/worker/feed";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
+import { setFeed } from "../../../redux/slice/feedSlice";
+import { navigate } from "../../../utils/navigate";
+import GiftCardBox from "@/components/sections/home/GiftCardBox";
 
 const Home = () => {
   const state = useAppSelector((e) => e.feedSlice);
@@ -105,6 +105,14 @@ const Home = () => {
         </View>
         {/* === Your favorite brand End === */}
         {/* --------------------------- */}
+
+        {/* === Gift Card Box Start === */}
+        {userState.user && (
+          <View className="mt-8">
+            <TitleBar title="Hot Gift Cards" />
+            <GiftCardBox />
+          </View>
+        )}
         {/* === Refer Box Start === */}
         {userState.user && (
           <View>
@@ -112,6 +120,8 @@ const Home = () => {
           </View>
         )}
         {/* === Refer Box End === */}
+
+        {/* === Gift Card Box End === */}
       </View>
       {state.data.coupons.length != 0 && <CouponCodesList />}
     </HomeNavUi>

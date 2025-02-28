@@ -86,7 +86,7 @@ const SetUpProfile = () => {
         Enter your details and browse offers!
       </Text>
       <Image
-        source={require("../../../assets/mobile.png")}
+        source={require("@/assets/mobile.png")}
         className="mt-10"
         style={{
           width: width,
@@ -106,6 +106,7 @@ const SetUpProfile = () => {
             color="#508FE9"
           />
           <TextInput
+            autoComplete="off"
             className="flex-1 h-14  font-semibold"
             placeholder="Enter Email"
             cursorColor="#1e3faf"
@@ -117,6 +118,7 @@ const SetUpProfile = () => {
         <View className="authInput mt-5">
           <FontAwesome name="user-o" size={21} color="#508FE9" />
           <TextInput
+            autoComplete="off"
             className="flex-1 h-14  font-semibold"
             placeholder="Enter Name"
             cursorColor="#1e3faf"
@@ -128,6 +130,7 @@ const SetUpProfile = () => {
         <View className="authInput mt-5">
           <Entypo name="slideshare" size={21} color="#508FE9" />
           <TextInput
+            autoComplete="off"
             className="flex-1 h-14  font-semibold"
             placeholder="Refer Code (Optional)"
             cursorColor="#1e3faf"

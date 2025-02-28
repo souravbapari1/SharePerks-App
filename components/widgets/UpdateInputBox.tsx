@@ -44,6 +44,7 @@ const UpdateInputBox = ({
       className="flex-row h-14 border-gray-200 rounded-2xl overflow-hidden pr-3 bg-white border items-center"
     >
       <TextInput
+        autoComplete="off"
         className={"h-12 px-5 flex-1 " + (showIcon ? "mr-3" : null)}
         value={value}
         keyboardType={keyboardType}
