@@ -26,6 +26,12 @@ const SplashScreen = () => {
         const user = await getUser();
         OneSignal.login(user.user._id);
 
+        if (user.user.isBlocked == true) {
+          await AsyncStorage.clear();
+          router.replace("/auth");
+          return;
+        }
+
         if (user.user.completeProfile == true) {
           dispatch(setUserData(user));
 

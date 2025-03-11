@@ -37,6 +37,14 @@ function UserNavigateList({ onOpenPolicy }: { onOpenPolicy: Function }) {
           <Ionicons name="wallet-outline" size={22} color="black" />
           <Text className="font-semibold  mt-1 ">Total Earnings</Text>
         </UserList>
+        <UserList
+          onPress={() => {
+            router.push("/shareperk/pages/myrefers");
+          }}
+        >
+          <Ionicons name="grid-outline" size={22} color="black" />
+          <Text className="font-semibold  mt-1 ">My Referrals</Text>
+        </UserList>
         <UserList onPress={() => {}}>
           <Feather name="info" size={22} color="black" />
           <Text

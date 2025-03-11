@@ -24,6 +24,7 @@ export interface User {
   email: string;
   name: string;
   emailAlerts: boolean;
+  isBlocked: boolean;
 }
 
 export interface Holdings {

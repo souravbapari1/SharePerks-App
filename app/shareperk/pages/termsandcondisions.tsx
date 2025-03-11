@@ -60,6 +60,7 @@ const TermsAndCond = () => {
           style={{
             flex: 1, // Allow WebView to take up available space
           }}
+          minimumFontSize={35}
           originWhitelist={["*"]}
           source={{
             html: `

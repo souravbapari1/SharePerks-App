@@ -27,7 +27,7 @@ const PageViewHtml = () => {
   useEffect(() => {
     navigate.setOptions({
       headerShown: true,
-      title: "Privacy Policy",
+      title: "Frequently Asked Questions",
       headerLeft: () => (
         <Ionicons
           name="chevron-back"
@@ -60,6 +60,7 @@ const PageViewHtml = () => {
             flex: 1, // Allow WebView to take up available space
           }}
           originWhitelist={["*"]}
+          minimumFontSize={35}
           source={{
             html: `
         <html>

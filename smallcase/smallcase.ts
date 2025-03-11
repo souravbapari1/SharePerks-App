@@ -64,9 +64,12 @@ export const connectBroker = async () => {
     const smallcaseAuthToken = JSON.parse(
       resSC.data.toString()
     ).smallcaseAuthToken;
+
+
+
     const allHoldings = await fetchHoldings(smallcaseAuthToken);
     const userdata = await importHoldings(allHoldings.data);
-    // await AsyncStorage.setItem(SC_USER_PRIVATE_TOKEN, data.toString());
+    await AsyncStorage.setItem("lastConnect", new Date().toISOString());
     return userdata;
   } catch (error) {
     throw error;

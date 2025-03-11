@@ -30,6 +30,10 @@ import { useAppDispatch, useAppSelector } from "../../../../../../redux/hooks";
 import { setUserData } from "../../../../../../redux/slice/userSlice";
 import { connectBroker } from "../../../../../../smallcase/smallcase";
 const IMAGE_HEIGHT = 250;
+import * as Clipboard from "expo-clipboard";
+import Feather from "@expo/vector-icons/Feather";
+import { toastConfig } from "@/constants/toaste-config";
+import Toast from "react-native-toast-message";
 const OfferView = () => {
   const [openOfferBenefits, setOfferBenefits] = useState(false);
 
@@ -179,7 +183,7 @@ const OfferView = () => {
         )}
       </Animated.ScrollView>
       {!loading && (
-        <View className="flex-row items-center justify-between h-20 px-8  bg-white border-t border-gray-200">
+        <View className="flex-row items-center justify-between w-full h-20 px-10 gap-3  bg-white border-t border-gray-200">
           {user?.user.brokerConnected == false && (
             <Pressable
               onPress={async () => {
@@ -190,9 +194,9 @@ const OfferView = () => {
                   console.log(error);
                 }
               }}
-              className="border border-orange-300 px-6 py-3 w-[55%] rounded-xl"
+              className="border border-orange-300 px-3  py-3 w-[52%] rounded-xl"
             >
-              <Text className="text-xs text-gray-800">
+              <Text className="text-xs text-gray-800 text-center">
                 Link your broker account {">"}
               </Text>
             </Pressable>
@@ -210,12 +214,37 @@ const OfferView = () => {
             }}
             className=" bg-orange-500 px-7 py-3 rounded-xl"
             style={{
-              width: user?.user.brokerConnected || !user?.user ? "100%" : "35%",
+              width: user?.user.brokerConnected || !user?.user ? "90%" : "35%",
             }}
           >
             <Text className="text-xs text-center font-bold text-white">
               View Offers
             </Text>
+          </Pressable>
+
+          <Pressable
+            onPress={async () =>
+              Clipboard.setStringAsync(
+                `🔥 SharePerks – Unlock & Share Exclusive Deals! 🔥
+
+${trackerLink}/tracker?type=offer&id=${offersData[index]._id}&user=${user?.user._id}
+
+Save more, share perks, and enjoy exclusive rewards with friends! 🎁💰
+
+📲 Get SharePerks now!
+
+https://play.google.com/store/apps/details?id=com.shareperks
+`
+              ).then(() => {
+                Toast.show({
+                  ...toastConfig,
+                  text1: "Link Copied",
+                });
+              })
+            }
+            className="bg-secondary h-10 w-10 rounded-xl flex items-center justify-center"
+          >
+            <Feather name="copy" size={18} color="white" />
           </Pressable>
         </View>
       )}

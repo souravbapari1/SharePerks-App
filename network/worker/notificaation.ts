@@ -6,7 +6,7 @@ export const loadNotification = async (id: string) => {
   const req = await client
     .get("/api/v1/user/notifications/" + id)
     .send<NotificationData[]>(token);
-  return req;
+  return req.reverse;
 };
 
 export const deleteNotification = async (id: string) => {

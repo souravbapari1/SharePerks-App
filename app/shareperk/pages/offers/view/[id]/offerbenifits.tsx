@@ -57,7 +57,7 @@ const OfferBenifits = () => {
         <WebView
           showsVerticalScrollIndicator={false}
           showsHorizontalScrollIndicator={false}
-          textZoom={200}
+          minimumFontSize={35}
           style={{
             flex: 1, // Allow WebView to take up available space
           }}

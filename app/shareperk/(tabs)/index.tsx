@@ -14,12 +14,34 @@ import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { setFeed } from "../../../redux/slice/feedSlice";
 import { navigate } from "../../../utils/navigate";
 import GiftCardBox from "@/components/sections/home/GiftCardBox";
+import { connectBroker } from "@/smallcase/smallcase";
+import { setUserData } from "@/redux/slice/userSlice";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Home = () => {
   const state = useAppSelector((e) => e.feedSlice);
   const userState = useAppSelector((e) => e.userSlice);
 
   const dispatch = useAppDispatch();
+
+  const holdingRefresh = async () => {
+    try {
+      if (userState.user?.user.brokerConnected == true) {
+        const lastConnect = await AsyncStorage.getItem("lastConnect");
+        if (lastConnect) {
+          const lastConnectDate = new Date(lastConnect);
+          const currentDate = new Date();
+          const diff = currentDate.getTime() - lastConnectDate.getTime();
+          if (diff > 1000 * 60 * 60 * 12) {
+            const userData = await connectBroker();
+            dispatch(setUserData(userData));
+          }
+        }
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const loadHomeFeed = async () => {
     if (state.data == null) {
@@ -31,6 +53,10 @@ const Home = () => {
   useEffect(() => {
     loadHomeFeed();
   }, [state]);
+
+  useEffect(() => {
+    holdingRefresh();
+  }, []);
 
   if (state.data == null) {
     return (

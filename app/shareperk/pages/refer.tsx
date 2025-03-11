@@ -1,11 +1,33 @@
-import { View, Text, Image, ScrollView } from "react-native";
+import { View, Text, Image, ScrollView, ActivityIndicator } from "react-native";
 import React from "react";
 
 import { REFER_Page } from "../../../constants/images";
 import TextBoltList from "../../../components/widgets/TextBoltList";
 import ReferWork from "../../../components/sections/refer/ReferWork";
+import { useQuery } from "@tanstack/react-query";
+import { client } from "@/network/action";
+import { SECONDARY_COLOR } from "@/constants/colors";
 
 const ReferPage = () => {
+  const data = useQuery({
+    queryKey: ["refer"],
+    queryFn: async () => {
+      const data = await client
+        .get("/api/v1/appcontent/refer")
+        .send<{ data: any }>();
+      return data.data;
+    },
+    refetchInterval: 1000 * 60 * 5,
+  });
+
+  if (data.isLoading) {
+    return (
+      <View className="flex-1 items-center justify-center">
+        <ActivityIndicator size="large" color={SECONDARY_COLOR} />
+      </View>
+    );
+  }
+
   return (
     <View style={{ backgroundColor: "#092D60", paddingTop: 70, flex: 1 }}>
       <View className="px-10 mt-2">
@@ -31,24 +53,9 @@ const ReferPage = () => {
           How it works
         </Text>
         <View className="border-orange-300/35 border rounded-xl relative mt-3 p-4 bg-white gap-5 mb-20">
-          <TextBoltList>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis
-            quibusdam numquam odio in corrupti illo ab magnam beatae dicta,
-            facilis doloribus natus, repellat molestias a fugit iusto ipsa
-            suscipit sint.
-          </TextBoltList>
-          <TextBoltList>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis
-            quibusdam numquam odio in corrupti illo ab magnam beatae dicta,
-            facilis doloribus natus, repellat molestias a fugit iusto ipsa
-            suscipit sint.
-          </TextBoltList>
-          <TextBoltList>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis
-            quibusdam numquam odio in corrupti illo ab magnam beatae dicta,
-            facilis doloribus natus, repellat molestias a fugit iusto ipsa
-            suscipit sint.
-          </TextBoltList>
+          {data.data?.map((item: any, index: number) => (
+            <TextBoltList key={index}>{item}</TextBoltList>
+          ))}
         </View>
       </ScrollView>
     </View>

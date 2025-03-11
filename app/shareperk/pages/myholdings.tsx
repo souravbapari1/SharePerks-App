@@ -10,6 +10,10 @@ import { setUserData } from "@/redux/slice/userSlice";
 import Toast from "react-native-toast-message";
 import { toastConfig } from "@/constants/toaste-config";
 import { navigate } from "@/utils/navigate";
+import {
+  connectBroker,
+  SmallcaseGatewayTriggerTransaction,
+} from "@/smallcase/smallcase";
 const MyHoldings = () => {
   const navigation = useNavigation();
   const dispatch = useAppDispatch();
@@ -52,24 +56,56 @@ const MyHoldings = () => {
     }
   };
 
+  const handleRefresh = async () => {
+    setLoading(true);
+    try {
+      console.log("Disconnecting user...");
+
+      const userData = await connectBroker();
+      dispatch(setUserData(userData));
+
+      Toast.show({
+        type: "success",
+        text1: "Holding Refresh Successfully",
+        ...toastConfig,
+      });
+    } catch (error) {
+      console.log("Error disconnecting:", error);
+
+      Toast.show({
+        type: "error",
+        text1: "Error Refresh Holding. Try Again!",
+        ...toastConfig,
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
     navigation.setOptions({
       headerTitle: "My Holdings",
       headerShown: true,
       headerRight: () => {
         return (
-          <TouchableOpacity
-            disabled={loading}
-            style={{ opacity: loading ? 0.5 : 1 }}
-            onPress={handleDisconnect}
-            className="flex-row gap-2 text-white items-center justify-center bg-secondary rounded-full p-2 px-4"
-          >
-            <AntDesign name="disconnect" size={15} color="white" />
-            <Text className="text-white font-semibold">
-              {" "}
-              {loading ? "Disconnecting..." : "Disconnect"}
-            </Text>
-          </TouchableOpacity>
+          <View className="gap-3 flex-row">
+            <TouchableOpacity
+              disabled={loading}
+              style={{ opacity: loading ? 0.5 : 1 }}
+              onPress={handleRefresh}
+              className="flex-row gap-2 text-white items-center justify-center bg-primary rounded-full p-2 px-4"
+            >
+              <AntDesign name="reload1" size={15} color="white" />
+            </TouchableOpacity>
+            <TouchableOpacity
+              disabled={loading}
+              style={{ opacity: loading ? 0.5 : 1 }}
+              onPress={handleDisconnect}
+              className="flex-row gap-2 text-white items-center justify-center bg-secondary rounded-full p-2 px-4"
+            >
+              <AntDesign name="disconnect" size={15} color="white" />
+            </TouchableOpacity>
+          </View>
         );
       },
     });

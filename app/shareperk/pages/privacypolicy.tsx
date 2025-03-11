@@ -7,7 +7,6 @@ import { usePageDataStore } from "../../../helper/hooks/usePageState";
 import WebView from "react-native-webview";
 import { client } from "../../../network/action";
 const PageViewHtml = () => {
-  const navigate = useNavigation();
   const [data, setData] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -24,6 +23,7 @@ const PageViewHtml = () => {
       setLoading(false);
     }
   };
+  const navigate = useNavigation();
 
   useEffect(() => {
     navigate.setOptions({
@@ -60,6 +60,7 @@ const PageViewHtml = () => {
           style={{
             flex: 1, // Allow WebView to take up available space
           }}
+          minimumFontSize={35}
           originWhitelist={["*"]}
           source={{
             html: `

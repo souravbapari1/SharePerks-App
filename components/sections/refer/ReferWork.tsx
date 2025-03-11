@@ -10,7 +10,7 @@ import Toast from "react-native-toast-message";
 import { SECONDARY_COLOR } from "../../../constants/colors";
 function ReferWork() {
   const { user } = useAppSelector((e) => e.userSlice);
-  const referLink = `"Hey! 👋 Join me on SharePerks, where you can access exclusive perks and rewards. Sign up using my referral code ${user?.user.referCode} to get extra perks on your first order! 🎉 Download the app now and start enjoying the benefits!"`;
+  const referLink = `"Hey! 👋 Join me on SharePerks, where you can access exclusive perks and rewards. Sign up using my referral code ${user?.user.referCode} to get extra perks on your first order! 🎉 Download the app now and start enjoying the benefits!"  https://play.google.com/store/apps/details?id=com.shareperks`;
   return (
     <View
       className="authBox items-center   "

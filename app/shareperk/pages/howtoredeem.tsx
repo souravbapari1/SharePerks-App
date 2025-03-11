@@ -61,6 +61,7 @@ const HowToRedeem = () => {
             flex: 1, // Allow WebView to take up available space
           }}
           originWhitelist={["*"]}
+          minimumFontSize={35}
           source={{
             html: `
         <html>
