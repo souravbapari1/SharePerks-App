@@ -101,6 +101,9 @@ const Home = () => {
             onPress={() =>
               navigate({
                 pathname: "/shareperk/pages/offers/extra",
+                params: {
+                  name: "Extra CashBack Offer",
+                },
               })
             }
           />
@@ -116,6 +119,9 @@ const Home = () => {
                 onPress={() =>
                   navigate({
                     pathname: "/shareperk/pages/offers/wallet",
+                    params: {
+                      name: "Offer From Wallet",
+                    },
                   })
                 }
               />

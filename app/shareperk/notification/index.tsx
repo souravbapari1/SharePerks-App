@@ -29,6 +29,7 @@ const index = () => {
     try {
       const notifications = await loadNotification(state.user!.user._id);
       setData(notifications);
+
       setLoading(false);
     } catch (error) {
       setLoading(false);
@@ -38,7 +39,7 @@ const index = () => {
 
   const deleteData = async () => {
     try {
-      const notifications = await deleteNotification(state.user!.user._id);
+      await deleteNotification(state.user!.user._id);
       setData([]);
       setLoading(false);
     } catch (error) {

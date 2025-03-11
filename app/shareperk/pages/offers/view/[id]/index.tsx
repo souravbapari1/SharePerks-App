@@ -8,6 +8,7 @@ import {
   Linking,
   Pressable,
   ScrollView,
+  Share,
   Text,
   View,
 } from "react-native";
@@ -224,27 +225,22 @@ const OfferView = () => {
 
           <Pressable
             onPress={async () =>
-              Clipboard.setStringAsync(
-                `🔥 SharePerks – Unlock & Share Exclusive Deals! 🔥
+              await Share.share({
+                message: `🔥 SharePerks – Unlock & Share Exclusive Deals! 🔥
 
 ${trackerLink}/tracker?type=offer&id=${offersData[index]._id}&user=${user?.user._id}
-
+                              
 Save more, share perks, and enjoy exclusive rewards with friends! 🎁💰
 
 📲 Get SharePerks now!
 
 https://play.google.com/store/apps/details?id=com.shareperks
-`
-              ).then(() => {
-                Toast.show({
-                  ...toastConfig,
-                  text1: "Link Copied",
-                });
+`,
               })
             }
             className="bg-secondary h-10 w-10 rounded-xl flex items-center justify-center"
           >
-            <Feather name="copy" size={18} color="white" />
+            <Feather name="share" size={18} color="white" />
           </Pressable>
         </View>
       )}
